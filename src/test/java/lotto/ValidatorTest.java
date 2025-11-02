@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.util.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ public class ValidatorTest {
     @DisplayName("금액이_1000원_단위가_아닐_경우_예외")
     @Test
     void 금액이_1000원_단위가_아니면_예외(){
-        assertThatThrownBy(()->Validator.validatePurchaseAmount("1500"))
+        assertThatThrownBy(()-> Validator.validatePurchaseAmount("1500"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
