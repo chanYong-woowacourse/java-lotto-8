@@ -42,7 +42,7 @@ public class Application {
     private static int readValidBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-                int bonusNumber = InputView.readBonusNumber();
+                int bonusNumber = InputView.readBonusNumber(winningNumbers);
                 if (winningNumbers.contains(bonusNumber)) {
                     throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
                 }
