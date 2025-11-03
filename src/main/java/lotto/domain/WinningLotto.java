@@ -14,11 +14,10 @@ public class WinningLotto {
 
 
     public int countMatches(Lotto lotto) {
-        List<Integer> winningNumbers = winningLotto.getNumbers();
         List<Integer> lottoNumbers = lotto.getNumbers();
 
         return (int) lottoNumbers.stream()
-                .filter(winningNumbers::contains)
+                .filter(winningLotto.getNumbers()::contains)
                 .count();
     }
     public boolean hasBonusMatch(Lotto lotto) {
