@@ -12,14 +12,25 @@ public class LottoResult {
     }
 
     public Map<Rank, Integer> getStatistics() {
-        return new HashMap<>(); // TODO: 구현 예정
+        Map<Rank, Integer> statistics = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            statistics.put(rank, 0);
+        }
+        for (Rank rank : ranks) {
+            statistics.put(rank, statistics.get(rank) + 1);
+        }
+        return statistics;
     }
 
     public int getTotalPrize() {
-        return 0; // TODO: 구현 예정
+        int total = 0;
+        for (Rank rank : ranks) {
+            total += rank.getPrizeMoney();
+        }
+        return total;
     }
 
     public double calculateProfitRate(int purchaseAmount) {
-        return 0.0; // TODO: 구현 예정
+        return (double) getTotalPrize() / purchaseAmount * 100;
     }
 }
