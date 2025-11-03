@@ -16,18 +16,14 @@ public class LottoResult {
         for (Rank rank : Rank.values()) {
             statistics.put(rank, 0);
         }
-        for (Rank rank : ranks) {
-            statistics.put(rank, statistics.get(rank) + 1);
-        }
+        ranks.forEach(rank -> statistics.put(rank, statistics.get(rank) + 1));
         return statistics;
     }
 
     public int getTotalPrize() {
-        int total = 0;
-        for (Rank rank : ranks) {
-            total += rank.getPrizeMoney();
-        }
-        return total;
+        return ranks.stream()
+                .mapToInt(Rank::getPrizeMoney)
+                .sum();
     }
 
     public double calculateProfitRate(int purchaseAmount) {
