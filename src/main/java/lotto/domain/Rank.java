@@ -8,18 +8,36 @@ public enum Rank {
     FIFTH(3, false, 5_000, "3개 일치 (5,000원)"),
     NONE(0, false, 0, "낙첨");
 
-    int matchCount;
-    boolean bonusMatch;
-    int prizeMoney;
-    String description;
+    private final int matchCount;
+    private final boolean bonusMatch;
+    private final int prizeMoney;
+    private final String description;
 
 
     Rank(int matchCount, boolean bonusMatch, int prizeMoney, String description) {
-
+        this.matchCount = matchCount;
+        this.bonusMatch = bonusMatch;
+        this.prizeMoney = prizeMoney;
+        this.description = description;
     }
 
     public static Rank valueOf(int matchCount, boolean bonusMatch) {
-        return null;
+        if (matchCount == 6) {
+            return FIRST;
+        }
+        if (matchCount == 5 && bonusMatch) {
+            return SECOND;
+        }
+        if (matchCount == 5 && !bonusMatch) {
+            return THIRD;
+        }
+        if (matchCount == 4) {
+            return FOURTH;
+        }
+        if (matchCount == 3) {
+            return FIFTH;
+        }
+        return NONE;
     }
 
     public int getPrizeMoney() {
