@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class WinningLotto {
 
     private final Lotto winningLotto;
@@ -12,10 +14,15 @@ public class WinningLotto {
 
 
     public int countMatches(Lotto lotto) {
-        return 0; // stub 반환
+        List<Integer> winningNumbers = winningLotto.getNumbers();
+        List<Integer> lottoNumbers = lotto.getNumbers();
+
+        return (int) lottoNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
     }
     public boolean hasBonusMatch(Lotto lotto) {
-        return false; // stub 반환
+        return lotto.getNumbers().contains(bonusNumber);
     }
 
 }

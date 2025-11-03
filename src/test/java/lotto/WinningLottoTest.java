@@ -19,17 +19,21 @@ public class WinningLottoTest {
 
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 8));
+        Lotto lotto4 = new Lotto(List.of(1, 2, 3, 10, 11, 12));
 
         // 6개 일치
         assertThat(winningLotto.countMatches(lotto1)).isEqualTo(6);
 
-        // 5개 + 보너스 일치 (특정 등수용 체크 가능)
+        // 5개 + 보너스 일치 2등
         assertThat(winningLotto.countMatches(lotto2)).isEqualTo(5);
         assertThat(winningLotto.hasBonusMatch(lotto2)).isTrue();
 
-        // 3개 일치
-        assertThat(winningLotto.countMatches(lotto3)).isEqualTo(3);
+        // 5개 + 3등
+        assertThat(winningLotto.countMatches(lotto3)).isEqualTo(5);
         assertThat(winningLotto.hasBonusMatch(lotto3)).isFalse();
+
+        // 3개 일치
+        assertThat(winningLotto.countMatches(lotto4)).isEqualTo(3);
     }
 }
