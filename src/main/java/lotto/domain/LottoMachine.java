@@ -11,4 +11,8 @@ public class LottoMachine {
                 .map(Lotto::new)
                 .toList();
     }
+
+    public static int calculateLottoCount(int purchaseAmount) {
+        return purchaseAmount / LOTTO_PRICE;
+    }
 }

@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,20 +9,24 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LottoMachineTest {
-    @DisplayName("구매 금액에 맞게 로또 장 수를 생성한다")
+class LottoMachineTest {
+
+    @DisplayName("입력된 번호 리스트로 로또들을 생성한다")
     @Test
-    void generateLottosByPurchaseAmount() {
-        int purchaseAmount = 5000; // 5000원이면 5장
-        List<Lotto> lottos = LottoMachine.generateLottos(purchaseAmount);
+    void 입력된_번호_리스트로_로또들_생성() {
+        // given
+        List<List<Integer>> inputNumbersList = List.of(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(7, 8, 9, 10, 11, 12)
+        );
+        LottoMachine lottoMachine = new LottoMachine();
 
-        // 장 수 검증
-        assertThat(lottos).hasSize(purchaseAmount/1000);
+        // when
+        List<Lotto> lottos = lottoMachine.createLottosFromNumbers(inputNumbersList);
 
-        // 각 로또 번호 검증
-        for (Lotto lotto : lottos) {
-            assertThat(lotto.getNumbers()).hasSize(6);
-        }
+        // then
+        assertThat(lottos).hasSize(2);
+        assertThat(lottos.get(0).getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(lottos.get(1).getNumbers()).containsExactly(7, 8, 9, 10, 11, 12);
     }
-
 }
