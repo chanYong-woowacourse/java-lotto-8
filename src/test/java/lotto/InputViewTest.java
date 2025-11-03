@@ -13,7 +13,7 @@ public class InputViewTest extends NsTest {
     @DisplayName("구매 금액 입력 프롬프트가 출력된다")
     void 구매금액_입력_프롬프트() {
         assertSimpleTest(() -> {
-            run("8000");
+            run("8000", "1,2,3,4,5,6", "7");
             assertThat(output()).contains("구입금액을 입력해 주세요.");
         });
     }
@@ -22,7 +22,7 @@ public class InputViewTest extends NsTest {
     @DisplayName("당첨 번호 입력 프롬프트가 출력된다")
     void 당첨번호_입력_프롬프트() {
         assertSimpleTest(() -> {
-            run("1,2,3,4,5,6");
+            run("8000", "1,2,3,4,5,6", "7");
             assertThat(output()).contains("당첨 번호를 입력해 주세요.");
         });
     }
@@ -31,7 +31,7 @@ public class InputViewTest extends NsTest {
     @DisplayName("보너스 번호 입력 프롬프트가 출력된다")
     void 보너스번호_입력_프롬프트() {
         assertSimpleTest(() -> {
-            run("7");
+            run("8000", "1,2,3,4,5,6", "7");
             assertThat(output()).contains("보너스 번호를 입력해 주세요.");
         });
     }
