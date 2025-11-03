@@ -20,6 +20,7 @@ public class WinningLotto {
                 .filter(winningLotto.getNumbers()::contains)
                 .count();
     }
+
     public boolean hasBonusMatch(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
     }
